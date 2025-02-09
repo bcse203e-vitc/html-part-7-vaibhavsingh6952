@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find Second & Third Largest</title>
+</head>
+<body>
+
+    <h2>Find Second & Third Largest Number</h2>
+
+    <label>Enter numbers (comma-separated):</label>
+    <input type="text" id="arrInput" placeholder="e.g., 10,5,8,20,15">
+    <button onclick="findLargest()">Find</button>
+
+    <p>Second Largest: <span id="secondLargest"></span></p>
+    <p>Third Largest: <span id="thirdLargest"></span></p>
+
+    <script>
+        function findLargest() {
+            let arr = document.getElementById("arrInput").value
+                .split(',')
+                .map(num => parseFloat(num.trim()))
+                .filter(num => !isNaN(num)); // Convert to numbers & remove NaNs
+            
+            let uniqueArr = [...new Set(arr)].sort((a, b) => b - a); // Sort in descending order & remove duplicates
+
+            let second = uniqueArr.length > 1 ? uniqueArr[1] : "Not enough numbers";
+            let third = uniqueArr.length > 2 ? uniqueArr[2] : "Not enough numbers";
+
+            document.getElementById("secondLargest").innerText = second;
+            document.getElementById("thirdLargest").innerText = third;
+        }
+    </script>
+
+</body>
+</html>
